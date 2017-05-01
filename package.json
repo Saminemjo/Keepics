@@ -1,0 +1,23 @@
+{
+  "name": "mean-lineman",
+  "description": "Just another MEAN Stack with materialize-css",
+  "version": "1.0.0",
+  "private": true,
+  "author": "",
+  "scripts": {
+    "start": "lineman run",
+    "test": "lineman spec-ci",
+    "production": "lineman clean build && node production.js"
+  },
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-animate": "^1.6.4",
+    "angular-aria": "^1.6.4",
+    "angular-material": "^1.1.4",
+    "express": "",
+    "lineman": "~0.37.0",
+    "lineman-angular": "^0.3.0",
+    "lineman-less": "^0.1.0",
+    "materialize-css": "^0.98.2"
+  }
+}
