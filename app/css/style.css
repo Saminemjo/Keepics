@@ -10,17 +10,20 @@
 }
 
 .home-boutons {
-    margin: 2em 0 1em 5em;
+    margin: 0.5em 0 1em 5em;
     height: 4em;
 }
 
 .navbar-logo {
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 20px;
     width: 60px;
     border-radius: 100%;
 }
-
+.navbar-logo:hover{
+  width: 80px;
+  border-radius: 1001%;
+}
 .carte {
     margin-top: 5px;
     margin-bottom: 5px;
