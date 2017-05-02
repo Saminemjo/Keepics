@@ -9,6 +9,9 @@ const hashCode = (s) => s.split("").reduce((a, b) => {
 }, 0);
 
 const userSchema = new mongoose.Schema({
+    name: {
+        type: String
+    },
     email: {
         type: String,
         required: [true, 'Email address is required'],
@@ -25,6 +28,9 @@ const userSchema = new mongoose.Schema({
     isAdmin: {
         type: Boolean,
         default: false
+    },
+    pictures: {
+        type: Array
     }
 });
 
