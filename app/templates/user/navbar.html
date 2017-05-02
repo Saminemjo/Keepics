@@ -1,10 +1,12 @@
-<nav>
-    <div class="nav-wrapper navbar">
-        <img class="navbar-logo left" src="../../img/grumpycat.png" alt="">
-       <a href="#" class="brand-logo left keepics-logo">KEEPICS</a>
-        <ul class="right hide-on-med-and-down ">
-            <li ui-sref-active="active"><a ui-sref="user.home">Home</a></li>
-            <li><a ng-click="logout()" ng-show="auth.isAuthenticated()" href='#'>Logout</a></li>
-        </ul>
-    </div>
-</nav>
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper navbar">
+            <img class="navbar-logo left" src="../../img/grumpycat.png" alt="">
+            <a href="#" class="brand-logo left keepics-logo">KEEPICS</a>
+            <ul class="right hide-on-med-and-down ">
+                <li ui-sref-active="active"><a ui-sref="user.home">Home</a></li>
+                <li><a ng-click="logout()" ng-show="auth.isAuthenticated()" href='#'>Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
