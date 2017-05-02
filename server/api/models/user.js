@@ -98,7 +98,7 @@ export default class User {
             password: 0
         }, (err, user) => {
             if (err || !user) {
-                res.sendStatus(403);
+                res.sendStatus(500);
             } else {
                 res.json(user);
             }

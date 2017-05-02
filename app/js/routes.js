@@ -39,6 +39,15 @@ angular.module('app')
                         controller: 'RegisterController'
                     }
                 }
+            })
+            .state('anon.profile', {
+              url: '/profile/:id',
+              views: {
+                'content@': {
+                  templateUrl: 'anon/profile.html',
+                  controller: 'ProfileController'
+                }
+              }
             });
         $stateProvider
             .state('user', {
@@ -69,15 +78,6 @@ angular.module('app')
                     'content@': {
                         templateUrl: 'user/home.html',
                         controller: 'MainController'
-                    }
-                }
-            })
-            .state('user.profile', {
-                url: '/profile',
-                views: {
-                    'content@': {
-                        templateUrl: 'user/profile.html',
-                        controller: 'ProfileController'
                     }
                 }
             });
