@@ -1,6 +1,8 @@
 .carte {
-    background-size: cover;
-    height: 23vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 400px;;
 }
 .carteclose{
   color: grey;
