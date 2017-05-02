@@ -27,6 +27,10 @@
         <div class="card-action">
             <span class="card-title activator grey-text text-darken-4">{{picture.picname}}<i class="material-icons right">more_vert</i></span>
             <p><a href="{{picture.url}}">Lien vers votre image</a></p>
+            <div class="click" ng-click="removePic()" >
+                <span class="carteclose">DELETE MY PIC<i class="material-icons right">close</i></span>
+
+              </div>
         </div>
         <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">{{picture.picname}}<i class="material-icons right">close</i></span>
