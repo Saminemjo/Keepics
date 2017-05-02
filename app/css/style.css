@@ -114,3 +114,14 @@
     display: block;
     margin: auto;
 }
+
+.profile_img {
+    margin-top: -35px;
+    margin-left: 30px;
+    float: left;
+    width: 10em;
+    height: 10em;
+    border-radius: 100%;
+    display: block;
+    margin: auto;
+}
