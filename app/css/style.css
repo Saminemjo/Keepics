@@ -1,18 +1,105 @@
+.navbar {
+    background-color: #83C3C6;
+}
+.home-container{
+  padding-top: 1%;
+  background-color: #B0AAA1;
+}
+.home {
+    margin-left: 10%;
+}
+
+.home-boutons {
+    margin: 2em 0 1em 5em;
+    height: 4em;
+}
+
+.navbar-logo {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 60px;
+    border-radius: 100%;
+}
+
 .carte {
-    background-size: contain;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-style: none;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 400px;;
+    height: 300px;;
 }
-.carteclose{
-  color: grey;
-  float: right;
-  padding-bottom: 20px;
-  font-size: 12px;
+
+.keepics-logo {
+    margin-left: 2%;
+    font-weight: 900;
+    font-size: 30px;
+    letter-spacing: -3px;
 }
+
+.carteclose {
+    color: grey;
+    float: right;
+    padding-bottom: 20px;
+    font-size: 12px;
+}
+
 .cartediv {
     position: relative;
 }
-.click{
-  cursor: pointer;
+
+.click {
+    cursor: pointer;
+}
+
+.home-bground {
+    background-image: url("../img/grumpy.jpeg");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    height: 1000px;
+    background-color: #FFEBCD;
+}
+
+.home-title {
+    color: grey;
+}
+
+.home-call {
+    font-size: 2em;
+}
+
+.home-gif {
+    margin-left: 20%;
+}
+
+.home-text1 {
+    float: left;
+    margin-left: 10%;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.home-carte {
+    margin: 10px 100px 5px 100px;
+}
+
+.home-keepics {
+    margin-bottom: -60px;
+    margin-top: 15%;
+    font-weight: 900;
+    font-size: 6em;
+    letter-spacing: -9px;
+}
+
+.register_container {
+    background-color: #FFEBCD;
+}
+
+.register_img {
+    width: 20em;
+    height: 20em;
+    border-radius: 100%;
+    display: block;
+    margin: auto;
 }
