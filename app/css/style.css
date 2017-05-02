@@ -1,16 +1,20 @@
 .navbar {
     background-color: #83C3C6;
 }
-.home-container{
-  padding-top: 1%;
-  background-color: #B0AAA1;
+
+.home-container {
+    padding-top: 1%;
+    background-color: #B0AAA1;
 }
+
 .home {
     margin-left: 10%;
 }
 
 .home-boutons {
-    margin: 0.5em 0 1em 5em;
+    color: white;
+    font-size: 2em;
+    margin: -1em 0 1em 5em;
     height: 4em;
 }
 
@@ -20,10 +24,12 @@
     width: 60px;
     border-radius: 100%;
 }
-.navbar-logo:hover{
-  width: 80px;
-  border-radius: 1001%;
+
+.navbar-logo:hover {
+    width: 80px;
+    border-radius: 1001%;
 }
+
 .carte {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -31,7 +37,8 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 300px;;
+    height: 300px;
+    ;
 }
 
 .keepics-logo {
