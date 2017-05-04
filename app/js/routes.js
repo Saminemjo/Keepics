@@ -63,6 +63,15 @@ angular.module('app')
                     access: AccessLevels.user
                 }
             })
+            .state('user.profile', {
+              url: '/profile/:name',
+              views: {
+                'content@': {
+                  templateUrl: 'user/profile.html',
+                  controller: 'ProfileController'
+                }
+              }
+            })
             .state('user.dashboard', {
                 url: '/dashboard',
                 views: {

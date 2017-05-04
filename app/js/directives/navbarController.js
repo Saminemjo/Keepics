@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('NavbarController', function($scope, Auth, CurrentUser) {
+    .controller('NavbarController', function($scope, Auth, CurrentUser,$location) {
         $scope.isCollapsed = true;
         $scope.auth = Auth;
         $scope.user = CurrentUser.user();
@@ -7,4 +7,7 @@ angular.module('app')
         $scope.logout = function() {
             Auth.logout();
         };
+        $scope.searchName = function(){
+          $location.path('user/profile/'+$scope.nameSearch);
+        }
     });

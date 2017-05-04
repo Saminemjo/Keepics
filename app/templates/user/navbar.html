@@ -3,9 +3,9 @@
         <div class="nav-wrapper navbar">
             <img class="navbar-logo left" src="../../img/grumpycat.png" alt="">
             <a href="#" class="brand-logo left keepics-logo">KEEPICS</a>
-            <form class="searchbar">
+            <form class="searchbar" ng-submit="searchName()">
                 <div class="input-field ">
-                    <input id="search" type="search" required>
+                    <input id="search" ng-model="nameSearch" placeholder="Search for user profile" required>
                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                     <i class="material-icons">close</i>
                 </div>
