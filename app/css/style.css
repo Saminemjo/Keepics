@@ -10,12 +10,13 @@
 .home {
     margin-left: 10%;
 }
-
+.home-text{
+  font-size: 2em;
+}
 .home-boutons {
     color: white;
     font-size: 2em;
-    margin: -1em 0 1em 5em;
-    height: 4em;
+    height: 3em;
 }
 
 .navbar-logo {
@@ -42,7 +43,7 @@
 }
 
 .keepics-logo {
-    margin-left: 2%;
+    margin-left: 80px;;
     font-weight: 900;
     font-size: 30px;
     letter-spacing: -3px;
