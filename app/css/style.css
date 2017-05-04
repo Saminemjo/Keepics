@@ -100,11 +100,15 @@
 }
 
 .home-keepics {
+    margin-top: 5%;
     margin-bottom: -60px;
-    margin-top: 15%;
     font-weight: 900;
     font-size: 6em;
     letter-spacing: -9px;
+}
+
+.home_register {
+    margin-top: 5%;
 }
 
 .register_container {
@@ -128,20 +132,31 @@
     border-radius: 100%;
     display: block;
 }
+
 .profile_container {
-  height: 175px;
+    height: 175px;
 }
-.profile_title{
-  margin-left: 30px;;
-  font-size: 3em;
-  float: left;
+
+.profile_title {
+    margin-left: 30px;
+    ;
+    font-size: 3em;
+    float: left;
 }
+
 .searchbar {
     margin-left: 44%;
     float: left;
 }
 
 .navbar-name {
+    margin-top: 1px;
+    margin-left: 245px;
+    font-size: 2em;
+    height: 100%;
+}
+
+.navbar_slogan {
     margin-top: 1px;
     margin-left: 245px;
     font-size: 2em;
