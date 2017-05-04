@@ -125,3 +125,8 @@
     display: block;
     margin: auto;
 }
+.searchbar {
+  margin-left: 35%;;
+  float: left;
+  width:25%;
+}

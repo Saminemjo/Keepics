@@ -16,7 +16,9 @@ module.exports = (app) => {
 
     router.get('/', user.findAll);
 
-    router.get('/:id', user.findById);
+    router.get('/:name', user.findByName);
+
+    router.get('/id/:id', user.findById);
 
     router.post('/', user.create);
 

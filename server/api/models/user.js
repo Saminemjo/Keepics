@@ -92,6 +92,15 @@ export default class User {
             }
         });
     }
+    findByName(req, res) {
+         model.findOne({name: req.params.name}, (err, user) => {
+             if (err || !user) {
+                 res.sendStatus(500);
+             } else {
+                 res.json(user);
+             }
+         });
+     }
 
     findById(req, res) {
         model.findById(req.params.id, {

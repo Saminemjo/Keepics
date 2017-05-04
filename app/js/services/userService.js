@@ -5,7 +5,10 @@ angular.module('app')
                 return $http.get('/users');
             },
             getOne: function(id) {
-                return $http.get('/users/' + id);
+                return $http.get('/users/id/' + id);
+            },
+            getName: function(name) {
+                return $http.get('/users/' + name);
             },
             update: function(id, user) {
                 return $http.put('/users/' + id, user);

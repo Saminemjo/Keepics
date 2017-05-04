@@ -41,7 +41,7 @@ angular.module('app')
                 }
             })
             .state('anon.profile', {
-              url: '/profile/:id',
+              url: '/profile/:name',
               views: {
                 'content@': {
                   templateUrl: 'anon/profile.html',
