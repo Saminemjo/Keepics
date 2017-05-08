@@ -10,6 +10,10 @@ angular.module('app')
                     'navbar@': {
                         templateUrl: 'anon/navbar.html',
                         controller: 'NavbarController'
+                    },
+                    'footer@': {
+                      templateUrl: 'anon/footer.html',
+                      controller: 'FooterController'
                     }
                 }
             })
@@ -57,7 +61,11 @@ angular.module('app')
                     'navbar@': {
                         templateUrl: 'user/navbar.html',
                         controller: 'NavbarController'
-                    }
+                    },
+                    'footer@': {
+                    templateUrl: 'user/footer.html',
+                    controller: 'FooterController'
+                  }
                 },
                 data: {
                     access: AccessLevels.user

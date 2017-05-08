@@ -1,7 +1,13 @@
 .navbar {
     background-color: #83C3C6;
 }
-
+.footer {
+  margin-top: -20px;
+  background-color: #83C3C6;
+}
+.home-footer{
+  margin-top: -200px;
+}
 .home-container {
     padding-top: 1%;
     background-color: #B0AAA1;
