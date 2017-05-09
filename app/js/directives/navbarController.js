@@ -9,5 +9,5 @@ angular.module('app')
         };
         $scope.searchName = function(){
           $location.path('user/profile/'+$scope.nameSearch);
-        }
+        };
     });
