@@ -19,7 +19,10 @@ angular.module('app')
                     $scope.user = res.data;
                 });
             };
-            $scope.newPic = {};
+            $scope.newPic = {
+              likers:[],
+              likes:0
+            };
             console.log($scope.user);
             $scope.addPic = function() {
                 $scope.user.pictures.push($scope.newPic);

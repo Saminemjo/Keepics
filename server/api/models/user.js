@@ -30,7 +30,13 @@ const userSchema = new mongoose.Schema({
         default: false
     },
     pictures: {
-        type: Array
+        likers: {
+            type: Array
+        },
+        likeCount: {
+            type: Number,
+            default:0
+        },
     }
 });
 
@@ -93,14 +99,16 @@ export default class User {
         });
     }
     findByName(req, res) {
-         model.findOne({name: req.params.name}, (err, user) => {
-             if (err || !user) {
-                 res.sendStatus(500);
-             } else {
-                 res.json(user);
-             }
-         });
-     }
+        model.findOne({
+            name: req.params.name
+        }, (err, user) => {
+            if (err || !user) {
+                res.sendStatus(500);
+            } else {
+                res.json(user);
+            }
+        });
+    }
 
     findById(req, res) {
         model.findById(req.params.id, {

@@ -97942,7 +97942,10 @@ angular.module('app')
                     $scope.user = res.data;
                 });
             };
-            $scope.newPic = {};
+            $scope.newPic = {
+              likers:[],
+              likes:0
+            };
             console.log($scope.user);
             $scope.addPic = function() {
                 $scope.user.pictures.push($scope.newPic);
@@ -97984,14 +97987,27 @@ angular.module('app')
 
 angular.module('app')
     .controller('ProfileController', function($scope, $http, $stateParams, UserService) {
-    console.log($stateParams.name);
-UserService.getName($stateParams.name).then(function(res){
-$scope.user = res.data;
-console.log($scope.user);
-});
-$scope.openLink = function(index) {
-    window.open($scope.user.pictures[index].url, 'Mon image', 'menubar=no, scrollbars=no, top=200, left=200, width=600, height=400');
-};
+        console.log($stateParams.name);
+        UserService.getName($stateParams.name).then(function(res) {
+            $scope.user = res.data;
+
+            $scope.like = function(index) {
+                if ($scope.user.pictures[index].likers.indexOf($scope.user.name) === -1) {
+                    $scope.liked = index;
+                    $scope.user.pictures[index].likers.push($scope.user.name);
+                    $scope.user.pictures[index].likes++;
+                    return true;
+                } else {
+                    $scope.liked = false;
+                    $scope.user.pictures[index].likers.splice($scope.user.pictures[index].likers.indexOf($scope.user.name), 1);
+                    $scope.user.pictures[index].likes--;
+                    return false;
+                }
+            };
+            $scope.openLink = function(index) {
+                window.open($scope.user.pictures[index].url, 'Mon image', 'menubar=no, scrollbars=no, top=200, left=200, width=600, height=400');
+            };
+        });
     });
 
 angular.module('app')
@@ -98388,7 +98404,6 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                    <p><a class=\"click\" ng-click=\"openLink($index)\">Lien vers votre image</a></p>\n" +
     "                    <div class=\"click\" ng-click=\"removePic($index)\">\n" +
     "                        <span class=\"carteclose\">DELETE MY PIC<i class=\"material-icons md-10 right \">close</i></span>\n" +
-    "\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"card-reveal\">\n" +
@@ -98446,6 +98461,9 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                <div class=\"card-action\">\n" +
     "                    <span class=\"card-title activator grey-text text-darken-4\">{{picture.picname}}<i class=\"material-icons right\">more_vert</i></span>\n" +
     "                    <p><a class=\"click\" ng-click=\"openLink($index)\">Lien vers l'image</a></p>\n" +
+    "                    <div class=\"click\" ng-click=\"like($index)\" ng-model=\"liked\">\n" +
+    "                        <span class=\"\">Like : {{picture.likes}}<i class=\"material-icons md-10 right \" ng-class=\"{'material-icons md-10 right red-text':$index}\">favorite</i></span>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"card-reveal\">\n" +
     "                    <span class=\"card-title grey-text text-darken-4\">{{picture.picname}}<i class=\"material-icons right\">close</i></span>\n" +
