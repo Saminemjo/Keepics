@@ -9,7 +9,7 @@ import api from './api';
 
 var app = express();
 app.server = http.createServer(app);
-
+app.use(express.static('./public'));
 app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
@@ -20,7 +20,7 @@ app.use(bodyParser.json({
     type: 'application/vnd.api+json'
 }));
 app.use(methodOverride('X-HTTP-Method-Override'));
-
+app.use(express.static('../dist/'));
 db(() => {
     app.use('/', api(app));
     process.on('SIGINT', () => {

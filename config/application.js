@@ -29,6 +29,26 @@ module.exports = function(lineman) {
                 port: 3000
             }
         },
+        loadNpmTasks: lineman.config.application.loadNpmTasks.concat('grunt-contrib-copy'),
+        copy: {
+            'dl-dev-copy': {
+                files: [{
+                    expand: true,
+                    cwd: 'generated/',
+                    src: ['**'],
+                    dest: './server/front/'
+                }]
+            }
+        },
+        watch: {
+            target: {
+                "files": ["app/**/*"],
+                "tasks": 'dl-dev-copy'
+            }
+        },
+        appendTasks: {
+            common: ["dl-dev-copy"]
+        },
 
         // Sass
         //
