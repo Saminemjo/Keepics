@@ -2,12 +2,12 @@
     <nav>
         <div class="nav-wrapper navbar">
             <img class="navbar-logo left" src="../../img/grumpycat.png" alt="">
-            <a href="#" class="brand-logo left keepics-logo">KEEPICS <i class="material-icons right">favorite border</i></a>
-            <a class="brand-logo navbar-name left">{{user.name}}</a>
+            <a  class="brand-logo left keepics-logo">KEEPICS <i class="material-icons right">favorite border</i></a>
+            <a class="brand-logo navbar-name left" ui-sref="user.home">{{user.name}}</a>
             <div class="searchbar">
                 <form ng-submit="searchName()">
                     <div class="input-field ">
-                        <input id="search" ng-model="nameSearch" placeholder="Search for user profile" required>
+                        <input id="autocomplete" class="autocomplete" ng-model="nameSearch" placeholder="Search for user profile" required>
                         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                     </div>
                 </form>
