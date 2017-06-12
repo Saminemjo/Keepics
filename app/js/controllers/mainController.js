@@ -11,7 +11,7 @@ angular.module('app')
                 window.open($scope.user.pictures[index].url, 'Mon image', 'menubar=no, scrollbars=no, top=200, left=200, width=600, height=400');
             };
             $scope.copyLink = function() {
-                prompt('Press Ctrl + C, then Enter to copy to clipboard and share your link', 'http://localhost:8000/#!/profile/' + $scope.user.name);
+                prompt('Press Ctrl + C, then Enter to copy to clipboard and share your link', 'https://keepics.herokuapp.com/#!/profile/' + $scope.user.name);
             };
             $scope.removePic = function(index) {
                 $scope.user.pictures.splice(index, 1);
