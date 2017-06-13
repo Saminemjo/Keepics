@@ -337,8 +337,8 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                <div class=\"card-action\">\n" +
     "                    <span class=\"card-title activator grey-text text-darken-4\">{{picture.picname}}<i class=\"material-icons right\">more_vert</i></span>\n" +
     "                    <p><a class=\"click\" ng-click=\"openLink($index)\">Lien vers l'image</a></p>\n" +
-    "                    <div class=\"click\" ng-click=\"like($index)\" ng-model=\"liked\">\n" +
-    "                        <span class=\"\">Like : {{picture.likes}}<i class=\"material-icons md-10 right \" ng-class=\"{'material-icons md-10 right red-text':$index}\">favorite</i></span>\n" +
+    "                    <div class=\"click\" ng-click=\"like($index)\" >\n" +
+    "                        <span class=\"\">Like : {{picture.likes}}<i class=\"material-icons md-10 right\" ng-class=\"getClass($index)\">favorite</i></span>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"card-reveal\">\n" +

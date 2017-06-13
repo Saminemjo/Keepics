@@ -85,6 +85,8 @@ body {
 
 .click {
     cursor: pointer;
+    text-decoration: none;
+    outline: none;
 }
 
 .home-bground {
