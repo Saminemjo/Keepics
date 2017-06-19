@@ -10,6 +10,9 @@ angular.module('app')
                     return "material-icons md-10 right";
                 }
             };
+            for (var i = 0; i < $scope.user.pictures.length; i++) {
+              $scope.user.pictures[i].commentR="";
+            }
             var date = new Date();
             console.log($scope.user);
             $scope.addComment = function(index) {
