@@ -30,14 +30,9 @@ const userSchema = new mongoose.Schema({
         default: false
     },
     pictures: {
-        likers: {
-            type: Array
-        },
-        likeCount: {
-            type: Number,
-            default:0
-        },
+        type: Array
     }
+
 });
 
 userSchema.methods.comparePassword = function(pwd, cb) {

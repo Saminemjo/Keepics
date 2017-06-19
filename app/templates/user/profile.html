@@ -1,11 +1,11 @@
 <div class="home-container container-fluid">
     <div class="profile_container container">
-      <div class="row">
-        <img class="profile_img" src="../../img/grumpy_vador.png" alt="">
-        <div class="profile_title">
-            <p><span style="color:red">{{user.name}}</span></b> 's Pics</p>
+        <div class="row">
+            <img class="profile_img" src="../../img/grumpy_vador.png" alt="">
+            <div class="profile_title">
+                <p><span style="color:red">{{user.name}}</span></b> 's Pics</p>
+            </div>
         </div>
-      </div>
     </div>
     <div class="container home">
         <div class="row">
@@ -16,8 +16,26 @@
                 <div class="card-action">
                     <span class="card-title activator grey-text text-darken-4">{{picture.picname}}<i class="material-icons right">more_vert</i></span>
                     <p><a class="click" ng-click="openLink($index)">Lien vers l'image</a></p>
-                    <div class="click" ng-click="like($index)" >
-                        <span class="">Like : {{picture.likes}}<i class="material-icons md-10 right" ng-class="getClass($index)">favorite</i></span>
+                    <div class="">
+                        <span class="">Like : {{picture.likes}}<i class="material-icons md-10 right click" ng-click="like($index)" ng-class="getClass($index)">favorite</i></span>
+                    </div>
+                    <form ng-submit="addComment($index)" class="input-field row">
+                        <input ng-model="picture.commentR" id="{{$index}}" type="text" class="validate col s10">
+                        <label for="{{$index}}">Comment</label>
+                        <button class="btn waves-effect waves-light right col s2" type="submit" name="action">
+    <i class="material-icons right">send</i>
+  </button>
+                    </form>
+                    <div class="click">
+                        <a ng-click="showme=false" ng-show="showme">close comments</a>
+                        <a ng-click="showme=true" ng-hide="showme">See comments</a>
+                    </div>
+                    <div ng-show="showme" class="">
+                        <ul>
+                            <li ng-repeat="comment in picture.comments">
+                                <i> {{comment.date | date:' dd/MM/yyyy, \à HH:mm'}} par {{comment.author}} :</i></br>
+                                {{comment.text}}</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="card-reveal">

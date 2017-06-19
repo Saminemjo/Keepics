@@ -97944,7 +97944,8 @@ angular.module('app')
             };
             $scope.newPic = {
               likers:[],
-              likes:0
+              likes:0,
+              comments:[]
             };
             console.log($scope.user);
             $scope.addPic = function() {
@@ -97986,17 +97987,33 @@ angular.module('app')
     });
 
 angular.module('app')
-    .controller('ProfileController', function($scope, $http, $stateParams, UserService) {
-        console.log($stateParams.name);
+    .controller('ProfileController', function($scope, $http, CurrentUser, $stateParams, UserService) {
         UserService.getName($stateParams.name).then(function(res) {
             $scope.user = res.data;
 
-            $scope.getClass = function getClass(index) {
+            $scope.getClass = function(index) {
                 if ($scope.user.pictures[index].likers.indexOf($scope.user.name) !== -1) {
                     return "material-icons md-10 right red-text";
-                }else{
-                  return "material-icons md-10 right";
+                } else {
+                    return "material-icons md-10 right";
                 }
+            };
+            var date = new Date();
+            console.log($scope.user);
+            $scope.addComment = function(index) {
+                console.log($scope.user.pictures[index].commentR);
+                var comment = {
+                    author: CurrentUser.user().name,
+                    text: $scope.user.pictures[index].commentR,
+                    date: date
+                };
+                $scope.user.pictures[index].comments.push(comment);
+                UserService.update($scope.user._id, $scope.user).then(function() {
+                    UserService.getName($stateParams.name).then(function(res) {
+                        $scope.user = res.data;
+                        $scope.user.pictures[index].commentR = "";
+                    });
+                });
             };
             $scope.like = function(index) {
                 if ($scope.user.pictures[index].likers.indexOf($scope.user.name) === -1) {
@@ -98452,12 +98469,12 @@ angular.module("app").run(["$templateCache", function($templateCache) {
   $templateCache.put("user/profile.html",
     "<div class=\"home-container container-fluid\">\n" +
     "    <div class=\"profile_container container\">\n" +
-    "      <div class=\"row\">\n" +
-    "        <img class=\"profile_img\" src=\"../../img/grumpy_vador.png\" alt=\"\">\n" +
-    "        <div class=\"profile_title\">\n" +
-    "            <p><span style=\"color:red\">{{user.name}}</span></b> 's Pics</p>\n" +
+    "        <div class=\"row\">\n" +
+    "            <img class=\"profile_img\" src=\"../../img/grumpy_vador.png\" alt=\"\">\n" +
+    "            <div class=\"profile_title\">\n" +
+    "                <p><span style=\"color:red\">{{user.name}}</span></b> 's Pics</p>\n" +
+    "            </div>\n" +
     "        </div>\n" +
-    "      </div>\n" +
     "    </div>\n" +
     "    <div class=\"container home\">\n" +
     "        <div class=\"row\">\n" +
@@ -98468,8 +98485,26 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "                <div class=\"card-action\">\n" +
     "                    <span class=\"card-title activator grey-text text-darken-4\">{{picture.picname}}<i class=\"material-icons right\">more_vert</i></span>\n" +
     "                    <p><a class=\"click\" ng-click=\"openLink($index)\">Lien vers l'image</a></p>\n" +
-    "                    <div class=\"click\" ng-click=\"like($index)\" >\n" +
-    "                        <span class=\"\">Like : {{picture.likes}}<i class=\"material-icons md-10 right\" ng-class=\"getClass($index)\">favorite</i></span>\n" +
+    "                    <div class=\"\">\n" +
+    "                        <span class=\"\">Like : {{picture.likes}}<i class=\"material-icons md-10 right click\" ng-click=\"like($index)\" ng-class=\"getClass($index)\">favorite</i></span>\n" +
+    "                    </div>\n" +
+    "                    <form ng-submit=\"addComment($index)\" class=\"input-field row\">\n" +
+    "                        <input ng-model=\"picture.commentR\" id=\"{{$index}}\" type=\"text\" class=\"validate col s10\">\n" +
+    "                        <label for=\"{{$index}}\">Comment</label>\n" +
+    "                        <button class=\"btn waves-effect waves-light right col s2\" type=\"submit\" name=\"action\">\n" +
+    "    <i class=\"material-icons right\">send</i>\n" +
+    "  </button>\n" +
+    "                    </form>\n" +
+    "                    <div class=\"click\">\n" +
+    "                        <a ng-click=\"showme=false\" ng-show=\"showme\">close comments</a>\n" +
+    "                        <a ng-click=\"showme=true\" ng-hide=\"showme\">See comments</a>\n" +
+    "                    </div>\n" +
+    "                    <div ng-show=\"showme\" class=\"\">\n" +
+    "                        <ul>\n" +
+    "                            <li ng-repeat=\"comment in picture.comments\">\n" +
+    "                                <i> {{comment.date | date:' dd/MM/yyyy, \\à HH:mm'}} par {{comment.author}} :</i></br>\n" +
+    "                                {{comment.text}}</li>\n" +
+    "                        </ul>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"card-reveal\">\n" +

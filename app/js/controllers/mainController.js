@@ -21,7 +21,8 @@ angular.module('app')
             };
             $scope.newPic = {
               likers:[],
-              likes:0
+              likes:0,
+              comments:[]
             };
             console.log($scope.user);
             $scope.addPic = function() {

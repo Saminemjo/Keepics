@@ -1,15 +1,31 @@
 angular.module('app')
-    .controller('ProfileController', function($scope, $http, $stateParams, UserService) {
-        console.log($stateParams.name);
+    .controller('ProfileController', function($scope, $http, CurrentUser, $stateParams, UserService) {
         UserService.getName($stateParams.name).then(function(res) {
             $scope.user = res.data;
 
-            $scope.getClass = function getClass(index) {
+            $scope.getClass = function(index) {
                 if ($scope.user.pictures[index].likers.indexOf($scope.user.name) !== -1) {
                     return "material-icons md-10 right red-text";
-                }else{
-                  return "material-icons md-10 right";
+                } else {
+                    return "material-icons md-10 right";
                 }
+            };
+            var date = new Date();
+            console.log($scope.user);
+            $scope.addComment = function(index) {
+                console.log($scope.user.pictures[index].commentR);
+                var comment = {
+                    author: CurrentUser.user().name,
+                    text: $scope.user.pictures[index].commentR,
+                    date: date
+                };
+                $scope.user.pictures[index].comments.push(comment);
+                UserService.update($scope.user._id, $scope.user).then(function() {
+                    UserService.getName($stateParams.name).then(function(res) {
+                        $scope.user = res.data;
+                        $scope.user.pictures[index].commentR = "";
+                    });
+                });
             };
             $scope.like = function(index) {
                 if ($scope.user.pictures[index].likers.indexOf($scope.user.name) === -1) {
