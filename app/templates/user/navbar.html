@@ -3,7 +3,7 @@
         <div class="nav-wrapper navbar">
             <img class="navbar-logo left" src="../../img/grumpycat.png" alt="">
             <a  class="brand-logo left keepics-logo">KEEPICS <i class="material-icons right">favorite border</i></a>
-            <a class="brand-logo navbar-name left" ui-sref="user.home">{{user.name}}</a>
+            <a class="brand-logo navbar-name left" ng-click="goProfile()">{{user.name}}</a>
             <div class="searchbar">
                 <form ng-submit="searchName()">
                     <div class="input-field ">

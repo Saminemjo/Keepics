@@ -1,8 +1,8 @@
 angular.module('app')
-    .controller('RegisterController', function($scope, $state, Auth) {
+    .controller('RegisterController', function($scope, $location, Auth) {
         $scope.register = function() {
             Auth.register($scope.user).then(function() {
-                $state.go('user.home');
+                $location.path('user/profile/' + $scope.nameSearch);
             });
         };
     });

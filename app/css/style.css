@@ -29,7 +29,7 @@ body {
 }
 
 .home {
-    /*margin-left: 0%;*/
+    margin-top: -15px;
 }
 
 .home-text {
@@ -39,7 +39,7 @@ body {
 .home-boutons {
     color: white;
     font-size: 2em;
-    height: 3em;
+    height: 2em;
 }
 
 .navbar-logo {
@@ -155,7 +155,7 @@ body {
 }
 
 .profile_container {
-padding-top: 25px;
+    padding-top: 25px;
 }
 
 .profile_title {
@@ -170,6 +170,7 @@ padding-top: 25px;
 }
 
 .navbar-name {
+  cursor: pointer;
     margin-top: 1px;
     margin-left: 245px;
     font-size: 2em;

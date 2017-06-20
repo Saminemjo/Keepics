@@ -3,7 +3,10 @@ angular.module('app')
         $scope.isCollapsed = true;
         $scope.auth = Auth;
         $scope.user = CurrentUser.user();
-
+        console.log($scope.user.name);
+        $scope.goProfile = function() {
+            $location.path('user/profile/' + $scope.user.name);
+        };
         $scope.logout = function() {
             Auth.logout();
         };
