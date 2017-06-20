@@ -170,7 +170,7 @@ body {
 }
 
 .navbar-name {
-  cursor: pointer;
+    cursor: pointer;
     margin-top: 1px;
     margin-left: 245px;
     font-size: 2em;

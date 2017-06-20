@@ -98015,14 +98015,14 @@ angular.module('app')
             };
 
             $scope.addPic = function() {
-              $scope.newPic = {
-                likers:[],
-                likes:0,
-                comments:[],
-                url:$scope.newPic.url,
-                description: $scope.newPic.description,
-                name:$scope.newPic.picname
-              };
+                $scope.newPic = {
+                    likers: [],
+                    likes: 0,
+                    comments: [],
+                    url: $scope.newPic.url,
+                    description: $scope.newPic.description,
+                    name: $scope.newPic.picname
+                };
                 $scope.user.pictures.push($scope.newPic);
                 UserService.update(CurrentUser.user()._id, $scope.user).then(function() {
                         $scope.user = res.data;
@@ -98032,7 +98032,7 @@ angular.module('app')
                     });
             };
             $scope.getClass = function(index) {
-                if ($scope.user.pictures[index].likers.indexOf($scope.user.name) !== -1) {
+                if ($scope.user.pictures[index].likers.indexOf(CurrentUser.user().name) !== -1) {
                     return "material-icons md-10 right red-text";
                 } else {
                     return "material-icons md-10 right";
@@ -98059,15 +98059,26 @@ angular.module('app')
                 });
             };
             $scope.like = function(index) {
-                if ($scope.user.pictures[index].likers.indexOf($scope.user.name) === -1) {
+              console.log(CurrentUser.user().name);
+                if ($scope.user.pictures[index].likers.indexOf(CurrentUser.user().name) === -1) {
                     $scope.liked = index;
-                    $scope.user.pictures[index].likers.push($scope.user.name);
+                    $scope.user.pictures[index].likers.push(CurrentUser.user().name);
                     $scope.user.pictures[index].likes++;
+                    UserService.update($scope.user._id, $scope.user).then(function() {
+                        UserService.getName($stateParams.name).then(function(res) {
+                            $scope.user = res.data;
+                        });
+                    });
                     return true;
                 } else {
                     $scope.liked = false;
-                    $scope.user.pictures[index].likers.splice($scope.user.pictures[index].likers.indexOf($scope.user.name), 1);
+                    $scope.user.pictures[index].likers.splice($scope.user.pictures[index].likers.indexOf(CurrentUser.user().name), 1);
                     $scope.user.pictures[index].likes--;
+                    UserService.update($scope.user._id, $scope.user).then(function() {
+                      UserService.getName($stateParams.name).then(function(res) {
+                        $scope.user = res.data;
+                      });
+                    });
                     return false;
                 }
             };
