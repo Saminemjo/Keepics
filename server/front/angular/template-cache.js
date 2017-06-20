@@ -293,7 +293,7 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"row\">\n" +
-    "            <div class=\" col s12 m6 l6 card sticky-action home-carte\" ng-repeat=\"picture in user.pictures track by $index\">\n" +
+    "            <div class=\" col s12 m6 l6 xl4 card sticky-action home-carte\" ng-repeat=\"picture in user.pictures track by $index\">\n" +
     "                <div class=\"card-image waves-effect waves-block waves-light \">\n" +
     "                    <img class=\"activator carte\" style=\"background-image:url({{picture.url}})\">\n" +
     "                </div>\n" +

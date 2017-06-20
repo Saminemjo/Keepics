@@ -14,7 +14,25 @@ angular.module('app')
                 window.open($scope.user.pictures[index].url, 'Mon image', 'menubar=no, scrollbars=no, top=200, left=200, width=600, height=400');
             };
             $scope.copyLink = function() {
-                prompt('Press Ctrl + C, then Enter to copy to clipboard and share your link', 'https://keepics.herokuapp.com/#!/profile/' + $scope.user.name);
+                swal.queue([{
+                    title: 'Press Ctrl + C, then Enter to copy to clipboard and share your link',
+                    confirmButtonText: 'Show my public URL',
+                    text: 'Your public URL will be displayed ' +
+                        'soon',
+                    showLoaderOnConfirm: true,
+                    preConfirm: function() {
+                        return new Promise(function(resolve) {
+                            (function() {
+                                new Clipboard('https://keepics.herokuapp.com/#!/profile/' + $scope.user.name)
+                            })
+                            .done(function(data) {
+                                swal.insertQueueStep('https://keepics.herokuapp.com/#!/profile/' + $scope.user.name);
+                                resolve();
+                            });
+                        });
+                    }
+                }]);
+
             };
             $scope.removePic = function(index) {
                 $scope.user.pictures.splice(index, 1);
@@ -68,7 +86,7 @@ angular.module('app')
                 });
             };
             $scope.like = function(index) {
-              console.log(CurrentUser.user().name);
+                console.log(CurrentUser.user().name);
                 if ($scope.user.pictures[index].likers.indexOf(CurrentUser.user().name) === -1) {
                     $scope.liked = index;
                     $scope.user.pictures[index].likers.push(CurrentUser.user().name);
@@ -84,9 +102,9 @@ angular.module('app')
                     $scope.user.pictures[index].likers.splice($scope.user.pictures[index].likers.indexOf(CurrentUser.user().name), 1);
                     $scope.user.pictures[index].likes--;
                     UserService.update($scope.user._id, $scope.user).then(function() {
-                      UserService.getName($stateParams.name).then(function(res) {
-                        $scope.user = res.data;
-                      });
+                        UserService.getName($stateParams.name).then(function(res) {
+                            $scope.user = res.data;
+                        });
                     });
                     return false;
                 }
