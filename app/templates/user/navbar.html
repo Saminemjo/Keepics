@@ -4,18 +4,15 @@
             <img class="navbar-logo left" src="../../img/grumpycat.png" alt="">
             <a  class="brand-logo left keepics-logo">KEEPICS <i class="material-icons right">favorite border</i></a>
             <a class="brand-logo navbar-name left" ng-click="goProfile()">{{user.name}}</a>
-            <div class="searchbar">
-                <form ng-submit="searchName()">
-                    <div class="input-field ">
+
+            <ul class="right hide-on-med-and-down ">
+              <li><a ng-click="logout()" ng-show="auth.isAuthenticated()" ui-sref="anon.home">Logout</a></li>
+              <li>  <form ng-submit="searchName()">
+                    <div class="input-field searchbar">
                         <input id="autocomplete" class="autocomplete" ng-model="nameSearch" placeholder="Search for user profile" required>
                         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                     </div>
-                </form>
-            </div>
-
-            <ul class="right hide-on-med-and-down ">
-                <li ui-sref-active="active"><a ui-sref="user.home">Home</a></li>
-                <li><a ng-click="logout()" ng-show="auth.isAuthenticated()" href='#'>Logout</a></li>
+                </form></li>
             </ul>
         </div>
     </nav>

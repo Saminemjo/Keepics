@@ -100639,16 +100639,8 @@ angular.module('app')
                         controller: 'DashboardController'
                     }
                 }
-            })
-            .state('user.home', {
-                url: '/home',
-                views: {
-                    'content@': {
-                        templateUrl: 'user/home.html',
-                        controller: 'MainController'
-                    }
-                }
             });
+
         $urlRouterProvider.otherwise('/');
     });
 
@@ -100882,24 +100874,6 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "</footer>\n"
   );
 
-  $templateCache.put("user/home.html",
-    "<div class=\"home-container container-fluid\">\n" +
-    "    <div class=\"container\">\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\"col s12  home-text\">\n" +
-    "                <p> Click on the <b><span style=\"color:red\">RED</span></b> button to <del><i>destroy the World</i></del> add a new pic on your board...</p>\n" +
-    "            </div>\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\" col s12 home-boutons\">\n" +
-    "                    <a class=\"btn-floating btn-large waves-effect waves-light red\" data-target=\"modal1\"><i class=\"material-icons\">add</i></a>\n" +
-    "                    <a class=\"waves-effect waves-light btn\" ng-click=\"copyLink()\"><i class=\"material-icons left\">share</i>share with friends</a>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "    <div class=\"container home\">\n"
-  );
-
   $templateCache.put("user/navbar.html",
     "<div class=\"navbar-fixed\">\n" +
     "    <nav>\n" +
@@ -100907,18 +100881,15 @@ angular.module("app").run(["$templateCache", function($templateCache) {
     "            <img class=\"navbar-logo left\" src=\"../../img/grumpycat.png\" alt=\"\">\n" +
     "            <a  class=\"brand-logo left keepics-logo\">KEEPICS <i class=\"material-icons right\">favorite border</i></a>\n" +
     "            <a class=\"brand-logo navbar-name left\" ng-click=\"goProfile()\">{{user.name}}</a>\n" +
-    "            <div class=\"searchbar\">\n" +
-    "                <form ng-submit=\"searchName()\">\n" +
-    "                    <div class=\"input-field \">\n" +
+    "\n" +
+    "            <ul class=\"right hide-on-med-and-down \">\n" +
+    "              <li><a ng-click=\"logout()\" ng-show=\"auth.isAuthenticated()\" ui-sref=\"anon.home\">Logout</a></li>\n" +
+    "              <li>  <form ng-submit=\"searchName()\">\n" +
+    "                    <div class=\"input-field searchbar\">\n" +
     "                        <input id=\"autocomplete\" class=\"autocomplete\" ng-model=\"nameSearch\" placeholder=\"Search for user profile\" required>\n" +
     "                        <label class=\"label-icon\" for=\"search\"><i class=\"material-icons\">search</i></label>\n" +
     "                    </div>\n" +
-    "                </form>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <ul class=\"right hide-on-med-and-down \">\n" +
-    "                <li ui-sref-active=\"active\"><a ui-sref=\"user.home\">Home</a></li>\n" +
-    "                <li><a ng-click=\"logout()\" ng-show=\"auth.isAuthenticated()\" href='#'>Logout</a></li>\n" +
+    "                </form></li>\n" +
     "            </ul>\n" +
     "        </div>\n" +
     "    </nav>\n" +
@@ -100927,66 +100898,94 @@ angular.module("app").run(["$templateCache", function($templateCache) {
 
   $templateCache.put("user/profile.html",
     "<div class=\"home-container container-fluid\">\n" +
-    "\n" +
-    "    <div class=\"profile_container container\">\n" +
-    "        <div class=\"row\">\n" +
-    "            <img class=\"profile_img\" src=\"../../img/grumpy_vador.png\" alt=\"\">\n" +
-    "            <div class=\"profile_title\">\n" +
-    "                <p><span style=\"color:red\">{{user.name}}</span></b> 's Pics</p>\n" +
+    "    <div class=\"profile_container row \">\n" +
+    "        <div class=\"col s12\">\n" +
+    "            <img class=\"profile_img center-align\" src=\"../../img/grumpy_vador.png\" alt=\"\">\n" +
+    "            <div class=\"profile_title center-align\">\n" +
+    "                <p><span style=\"color:teal\">{{user.name}}</span></b> 's Pics</p>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "    <div class=\"container home\" >\n" +
-    "        <div class=\"row\" ng-show=\"isAuthor()\">\n" +
-    "            <div class=\"col s12  home-text\">\n" +
+    "    <div class=\"container-fluid home\">\n" +
+    "        <div class=\"text-container row\" ng-show=\"isAuthor()\">\n" +
+    "            <div class=\"col s10 home-text\">\n" +
     "                <p> Click on the <b><span style=\"color:red\">RED</span></b> button to <del><i>destroy the World</i></del> add a new pic on your board...</p>\n" +
     "            </div>\n" +
-    "            <div class=\" col s12 home-boutons\">\n" +
-    "                <a class=\"btn-floating btn-large waves-effect waves-light red\" data-target=\"modal1\"><i class=\"material-icons\">add</i></a>\n" +
-    "                <a class=\"waves-effect waves-light btn\" ng-click=\"copyLink()\"><i class=\"material-icons left\">share</i>share with friends</a>\n" +
+    "            <div class=\"fixed-action-btn horizontal click-to-toggle text_bouton\">\n" +
+    "                <a class=\"btn-floating btn-large red\">\n" +
+    "                    <i class=\"material-icons\">menu</i>\n" +
+    "                </a>\n" +
+    "                <ul>\n" +
+    "                    <li><a class=\"btn-floating red\"><i class=\"material-icons\">add</i></a></li>\n" +
+    "                    <li><a class=\"btn-floating yellow darken-1\"><i class=\"material-icons\">format_quote</i></a></li>\n" +
+    "                    <li><a class=\"btn-floating green\" ng-click=\"copyLink()\"><i class=\"material-icons\">link</i></a></li>\n" +
+    "                    <li><a class=\"btn-floating blue\" data-target=\"modal1\"><i class=\"material-icons\">add</i></a></li>\n" +
+    "                </ul>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\" col s12 m6 l6 xl4 card sticky-action home-carte\" ng-repeat=\"picture in user.pictures track by $index\">\n" +
-    "                <div class=\"card-image waves-effect waves-block waves-light \">\n" +
-    "                    <img class=\"activator carte\" style=\"background-image:url({{picture.url}})\">\n" +
-    "                </div>\n" +
-    "                <div class=\"card-action\">\n" +
-    "                    <span class=\"card-title activator grey-text text-darken-4\">{{picture.picname}}<i class=\"material-icons right\">more_vert</i></span>\n" +
-    "                    <p><a class=\"click\" ng-click=\"openLink($index)\">Lien vers l'image</a></p>\n" +
-    "                    <div class=\"\">\n" +
-    "                        <span class=\"\">Like : {{picture.likes}}<i class=\"material-icons md-10 right click\" ng-click=\"like($index)\" ng-class=\"getClass($index)\">favorite</i></span>\n" +
+    "        <div class=\"picontainer\">\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\" col s12 m6 l4 xl2 card sticky-action home-carte\" ng-repeat=\"picture in user.pictures track by $index\">\n" +
+    "                    <div class=\"card-image waves-effect waves-block waves-light \">\n" +
+    "                        <img class=\"carte\" style=\"background-image:url({{picture.url}})\" data-target=\"{{picture.url}}\">\n" +
     "                    </div>\n" +
-    "                    <form ng-submit=\"addComment($index)\" class=\"input-field row\">\n" +
-    "                        <input ng-model=\"picture.commentR\" id=\"{{$index}}\" type=\"text\" class=\"validate col s10\">\n" +
-    "                        <label for=\"{{$index}}\">Comment</label>\n" +
-    "                        <button class=\"btn waves-effect waves-light right col s2\" type=\"submit\" name=\"action\"><i class=\"material-icons right\">send</i></button>\n" +
-    "                    </form>\n" +
-    "                    <div class=\"click\">\n" +
-    "                        <a ng-click=\"showme=false\" ng-show=\"showme\">close comments</a>\n" +
-    "                        <a ng-click=\"showme=true\" ng-hide=\"showme\">See comments</a>\n" +
+    "                    <div class=\"card-content\">\n" +
+    "                        <span class=\"card-title activator grey-text text-darken-4\"><i class=\"material-icons right\">more_vert</i></span>\n" +
+    "                        <span class=\"right\"> {{picture.likes}}</span>\n" +
+    "                        <span><i class=\"material-icons right click\" ng-click=\"like($index)\" ng-class=\"getClass($index)\">favorite</i></span>\n" +
+    "                        <span><i class=\"material-icons right click\" ng-click=\"openLink($index)\">link</i></span>\n" +
+    "                        <span class=\"right\"> {{picture.comments.length}}</span>\n" +
+    "                        <span><i class=\"material-icons right click\" data-target=\"{{picture.url}}\">comment</i></span>\n" +
     "                    </div>\n" +
-    "                    <div ng-show=\"showme\" class=\"\">\n" +
-    "                        <ul>\n" +
-    "                            <li ng-repeat=\"comment in picture.comments\">\n" +
-    "                                <i> {{comment.date | date:' dd/MM/yyyy, \\à HH:mm'}} par {{comment.author}} :</i></br>\n" +
-    "                                {{comment.text}}</li>\n" +
-    "                        </ul>\n" +
+    "\n" +
+    "                    <div class=\"card-content\">\n" +
+    "                        <div ng-show=\"isAuthor()\" class=\"click\" ng-click=\"removePic($index)\">\n" +
+    "                            <span class=\"carteclose\">DELETE MY PIC<i class=\"material-icons md-10 right \">close</i></span>\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
-    "                </div>\n" +
-    "                <div class=\"card-action\">\n" +
-    "                    <div  ng-show=\"isAuthor()\"class=\"click\" ng-click=\"removePic($index)\">\n" +
-    "                        <span class=\"carteclose\">DELETE MY PIC<i class=\"material-icons md-10 right \">close</i></span>\n" +
+    "                    <div class=\"card-reveal\">\n" +
+    "                        <span class=\"card-title grey-text text-darken-4\">{{picture.picname}}<i class=\"material-icons right\">close</i></span>\n" +
+    "                        <p>{{picture.description}}</p>\n" +
     "                    </div>\n" +
-    "                </div>\n" +
-    "                <div class=\"card-reveal\">\n" +
-    "                    <span class=\"card-title grey-text text-darken-4\">{{picture.picname}}<i class=\"material-icons right\">close</i></span>\n" +
-    "                    <p>{{picture.description}}</p>\n" +
+    "                    <!-- Modal Structure -->\n" +
+    "                    <div id=\"{{picture.url}}\" class=\"modal\">\n" +
+    "                        <div class=\"modal-content\">\n" +
+    "                            <div class=\"container-fluid\">\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"col s6\">\n" +
+    "                                        <img class=\"modalimg\" style=\"background-image:url({{picture.url}})\">\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col s6\">\n" +
+    "                                      <p>{{picture.name}}</p>\n" +
+    "                                        <p>{{picture.description}}</p>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"col s12\">\n" +
+    "                                        <form ng-submit=\"addComment($index)\" class=\"input-field row\">\n" +
+    "                                            <input ng-model=\"picture.commentR\" id=\"{{$index}}\" type=\"text\" class=\"validate col s6\">\n" +
+    "                                            <label for=\"{{$index}}\">Comment</label>\n" +
+    "                                            <button class=\"btn waves-effect waves-light col s1\" type=\"submit\" name=\"action\"><i class=\"material-icons right\">send</i></button>\n" +
+    "                                        </form>\n" +
+    "                                        <div>\n" +
+    "                                            <ul>\n" +
+    "                                                <li ng-repeat=\"comment in picture.comments\">\n" +
+    "                                                    <i> {{comment.date | date:' dd/MM/yyyy, \\à HH:mm'}} par {{comment.author}} :</i></br>\n" +
+    "                                                    {{comment.text}}</li>\n" +
+    "                                            </ul>\n" +
+    "                                        </div>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"modal-footer\">\n" +
+    "                            <a class=\"modal-action modal-close waves-effect waves-orange btn-flat\">Close</a>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "    <!-- Modal Structure -->\n" +
     "    <div id=\"modal1\" class=\"modal\">\n" +
     "        <form novalidate ng-submit=\"addPic()\">\n" +
     "            <div class=\"modal-content\">\n" +

@@ -88,15 +88,7 @@ angular.module('app')
                         controller: 'DashboardController'
                     }
                 }
-            })
-            .state('user.home', {
-                url: '/home',
-                views: {
-                    'content@': {
-                        templateUrl: 'user/home.html',
-                        controller: 'MainController'
-                    }
-                }
             });
+
         $urlRouterProvider.otherwise('/');
     });

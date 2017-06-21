@@ -1,64 +1,92 @@
 <div class="home-container container-fluid">
-
-    <div class="profile_container container">
-        <div class="row">
-            <img class="profile_img" src="../../img/grumpy_vador.png" alt="">
-            <div class="profile_title">
-                <p><span style="color:red">{{user.name}}</span></b> 's Pics</p>
+    <div class="profile_container row ">
+        <div class="col s12">
+            <img class="profile_img center-align" src="../../img/grumpy_vador.png" alt="">
+            <div class="profile_title center-align">
+                <p><span style="color:teal">{{user.name}}</span></b> 's Pics</p>
             </div>
         </div>
     </div>
-    <div class="container home" >
-        <div class="row" ng-show="isAuthor()">
-            <div class="col s12  home-text">
+    <div class="container-fluid home">
+        <div class="text-container row" ng-show="isAuthor()">
+            <div class="col s10 home-text">
                 <p> Click on the <b><span style="color:red">RED</span></b> button to <del><i>destroy the World</i></del> add a new pic on your board...</p>
             </div>
-            <div class=" col s12 home-boutons">
-                <a class="btn-floating btn-large waves-effect waves-light red" data-target="modal1"><i class="material-icons">add</i></a>
-                <a class="waves-effect waves-light btn" ng-click="copyLink()"><i class="material-icons left">share</i>share with friends</a>
+            <div class="fixed-action-btn horizontal click-to-toggle text_bouton">
+                <a class="btn-floating btn-large red">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul>
+                    <li><a class="btn-floating red"><i class="material-icons">add</i></a></li>
+                    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+                    <li><a class="btn-floating green" ng-click="copyLink()"><i class="material-icons">link</i></a></li>
+                    <li><a class="btn-floating blue" data-target="modal1"><i class="material-icons">add</i></a></li>
+                </ul>
             </div>
         </div>
-        <div class="row">
-            <div class=" col s12 m6 l6 xl4 card sticky-action home-carte" ng-repeat="picture in user.pictures track by $index">
-                <div class="card-image waves-effect waves-block waves-light ">
-                    <img class="activator carte" style="background-image:url({{picture.url}})">
-                </div>
-                <div class="card-action">
-                    <span class="card-title activator grey-text text-darken-4">{{picture.picname}}<i class="material-icons right">more_vert</i></span>
-                    <p><a class="click" ng-click="openLink($index)">Lien vers l'image</a></p>
-                    <div class="">
-                        <span class="">Like : {{picture.likes}}<i class="material-icons md-10 right click" ng-click="like($index)" ng-class="getClass($index)">favorite</i></span>
+        <div class="picontainer">
+            <div class="row">
+                <div class=" col s12 m6 l4 xl2 card sticky-action home-carte" ng-repeat="picture in user.pictures track by $index">
+                    <div class="card-image waves-effect waves-block waves-light ">
+                        <img class="carte" style="background-image:url({{picture.url}})" data-target="{{picture.url}}">
                     </div>
-                    <form ng-submit="addComment($index)" class="input-field row">
-                        <input ng-model="picture.commentR" id="{{$index}}" type="text" class="validate col s10">
-                        <label for="{{$index}}">Comment</label>
-                        <button class="btn waves-effect waves-light right col s2" type="submit" name="action"><i class="material-icons right">send</i></button>
-                    </form>
-                    <div class="click">
-                        <a ng-click="showme=false" ng-show="showme">close comments</a>
-                        <a ng-click="showme=true" ng-hide="showme">See comments</a>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+                        <span class="right"> {{picture.likes}}</span>
+                        <span><i class="material-icons right click" ng-click="like($index)" ng-class="getClass($index)">favorite</i></span>
+                        <span><i class="material-icons right click" ng-click="openLink($index)">link</i></span>
+                        <span class="right"> {{picture.comments.length}}</span>
+                        <span><i class="material-icons right click" data-target="{{picture.url}}">comment</i></span>
                     </div>
-                    <div ng-show="showme" class="">
-                        <ul>
-                            <li ng-repeat="comment in picture.comments">
-                                <i> {{comment.date | date:' dd/MM/yyyy, \à HH:mm'}} par {{comment.author}} :</i></br>
-                                {{comment.text}}</li>
-                        </ul>
+
+                    <div class="card-content">
+                        <div ng-show="isAuthor()" class="click" ng-click="removePic($index)">
+                            <span class="carteclose">DELETE MY PIC<i class="material-icons md-10 right ">close</i></span>
+                        </div>
                     </div>
-                </div>
-                <div class="card-action">
-                    <div  ng-show="isAuthor()"class="click" ng-click="removePic($index)">
-                        <span class="carteclose">DELETE MY PIC<i class="material-icons md-10 right ">close</i></span>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{picture.picname}}<i class="material-icons right">close</i></span>
+                        <p>{{picture.description}}</p>
                     </div>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">{{picture.picname}}<i class="material-icons right">close</i></span>
-                    <p>{{picture.description}}</p>
+                    <!-- Modal Structure -->
+                    <div id="{{picture.url}}" class="modal">
+                        <div class="modal-content">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col s6">
+                                        <img class="modalimg" style="background-image:url({{picture.url}})">
+                                    </div>
+                                    <div class="col s6">
+                                      <p>{{picture.name}}</p>
+                                        <p>{{picture.description}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <form ng-submit="addComment($index)" class="input-field row">
+                                            <input ng-model="picture.commentR" id="{{$index}}" type="text" class="validate col s6">
+                                            <label for="{{$index}}">Comment</label>
+                                            <button class="btn waves-effect waves-light col s1" type="submit" name="action"><i class="material-icons right">send</i></button>
+                                        </form>
+                                        <div>
+                                            <ul>
+                                                <li ng-repeat="comment in picture.comments">
+                                                    <i> {{comment.date | date:' dd/MM/yyyy, \à HH:mm'}} par {{comment.author}} :</i></br>
+                                                    {{comment.text}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="modal-action modal-close waves-effect waves-orange btn-flat">Close</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal Structure -->
     <div id="modal1" class="modal">
         <form novalidate ng-submit="addPic()">
             <div class="modal-content">

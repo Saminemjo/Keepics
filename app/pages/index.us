@@ -5,19 +5,19 @@
     <title>
         <%= pkg.name %>
     </title>
-
     <link rel="stylesheet" type="text/css" href="<%= css %>" media="all" />
 </head>
 
 <body>
 
+<meta name="viewport" content="width=device-width, user-scalable=no">
     <div ui-view='navbar'></div>
     <div ui-view='content'></div>
 
     <script type="text/javascript" src="<%= js %>"></script>
     <footer>
-    <div id='footer' ui-view='footer'></div>
-  </footer>
+        <div id='footer' ui-view='footer'></div>
+    </footer>
 </body>
 
 </html>
