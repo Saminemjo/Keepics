@@ -100448,7 +100448,7 @@ angular.module('app')
                     preConfirm: function() {
                         return new Promise(function(resolve) {
                             (function() {
-                                new Clipboard('https://keepics.herokuapp.com/#!/profile/' + $scope.user.name)
+                                
                             })
                             .done(function(data) {
                                 swal.insertQueueStep('https://keepics.herokuapp.com/#!/profile/' + $scope.user.name);
