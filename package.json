@@ -2,10 +2,6 @@
     "name": "Keepics",
     "description": "Just another MEAN Stack with materialize-css",
     "version": "1.0.0",
-    "engines": {
-        "node": "8.1.2",
-        "npm": "^4"
-    },
     "private": true,
     "author": "Saminemjo",
     "scripts": {
