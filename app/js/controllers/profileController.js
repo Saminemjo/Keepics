@@ -14,9 +14,6 @@ angular.module('app')
             }
             $interval(callAtInterval, 5000);
 
-
-
-
             function isPrivate() {
                 if (CurrentUser.user().email !== $scope.user.email) {
                     for (var i = 0; i < $scope.user.pictures.length; i++) {
@@ -94,9 +91,9 @@ angular.module('app')
                 UserService.update($scope.user._id, $scope.user).then(function() {
                     UserService.getName($stateParams.name).then(function(res) {
                         $scope.user = res.data;
-                        $scope.user.pictures[index].commentR = "";
                     });
                 });
+                $scope.user.pictures[index].commentR = "";
             };
             $scope.like = function(index) {
                 console.log(CurrentUser.user().name);
