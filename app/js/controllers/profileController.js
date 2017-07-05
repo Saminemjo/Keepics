@@ -14,25 +14,7 @@ angular.module('app')
                 window.open($scope.user.pictures[index].url, 'Mon image', 'menubar=no, scrollbars=no, top=200, left=200, width=600, height=400');
             };
             $scope.copyLink = function() {
-                swal.queue([{
-                    title: 'Press Ctrl + C, then Enter to copy to clipboard and share your link',
-                    confirmButtonText: 'Show my public URL',
-                    text: 'Your public URL will be displayed ' +
-                        'soon',
-                    showLoaderOnConfirm: true,
-                    preConfirm: function() {
-                        return new Promise(function(resolve) {
-                            (function() {
-                                
-                            })
-                            .done(function(data) {
-                                swal.insertQueueStep('https://keepics.herokuapp.com/#!/profile/' + $scope.user.name);
-                                resolve();
-                            });
-                        });
-                    }
-                }]);
-
+                prompt('Press Ctrl + C, then Enter to copy to clipboard and share your link', 'http://localhost:8000/#!/profile/' + $scope.user.name);
             };
             $scope.removePic = function(index) {
                 $scope.user.pictures.splice(index, 1);
