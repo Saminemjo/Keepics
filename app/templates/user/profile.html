@@ -71,7 +71,7 @@
                                         </form>
                                         <div>
                                             <ul>
-                                                <li ng-repeat="comment in picture.comments">
+                                                <li ng-repeat="comment in picture.comments | orderBy:'-date'">
                                                     <i> {{comment.date | date:' dd/MM/yyyy, \à HH:mm'}} par {{comment.author}} :</i></br>
                                                     {{comment.text}}</li>
                                             </ul>

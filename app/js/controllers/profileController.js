@@ -1,7 +1,21 @@
 angular.module('app')
-    .controller('ProfileController', function($scope, $http, CurrentUser, $stateParams, UserService) {
+    .controller('ProfileController', function($scope, $http, CurrentUser, $interval, $stateParams, UserService) {
         UserService.getName($stateParams.name).then(function(res) {
             $scope.user = res.data;
+
+            $scope.getComments = function() {
+                UserService.getName($stateParams.name).then(function(res) {
+                    $scope.user = res.data;
+                });
+            };
+
+            function callAtInterval() {
+                $scope.getComments();
+            }
+            $interval(callAtInterval, 5000);
+
+
+
 
             function isPrivate() {
                 if (CurrentUser.user().email !== $scope.user.email) {
