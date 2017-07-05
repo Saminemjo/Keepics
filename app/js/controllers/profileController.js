@@ -2,6 +2,22 @@ angular.module('app')
     .controller('ProfileController', function($scope, $http, CurrentUser, $stateParams, UserService) {
         UserService.getName($stateParams.name).then(function(res) {
             $scope.user = res.data;
+
+            function isPrivate() {
+                if (CurrentUser.user().email !== $scope.user.email) {
+                    for (var i = 0; i < $scope.user.pictures.length; i++) {
+                        if ($scope.user.pictures[i].private === true) {
+                            $scope.user.pictures.splice(i, 1);
+                        }
+                    }
+                }
+            }
+            isPrivate();
+            $scope.private = function(index) {
+                if ($scope.user.pictures[index].private === true) {
+                    return true;
+                }
+            };
             $scope.isAuthor = function() {
                 if (CurrentUser.user().email === $scope.user.email) {
                     return true;
@@ -30,7 +46,8 @@ angular.module('app')
                     comments: [],
                     url: $scope.newPic.url,
                     description: $scope.newPic.description,
-                    name: $scope.newPic.picname
+                    name: $scope.newPic.picname,
+                    private: $scope.newPic.private
                 };
                 $scope.user.pictures.push($scope.newPic);
                 UserService.update(CurrentUser.user()._id, $scope.user).then(function() {

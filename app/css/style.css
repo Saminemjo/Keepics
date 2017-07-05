@@ -104,7 +104,12 @@ body {
 .cartediv {
     position: relative;
 }
-
+.private{
+  float: left;
+  font-size: 10px;
+  color: grey;
+  margin-left: -10px;
+}
 .click {
     cursor: pointer;
     text-decoration: none;

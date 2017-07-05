@@ -17,8 +17,8 @@
                     <i class="material-icons">menu</i>
                 </a>
                 <ul>
-                    <li><a class="btn-floating red"><i class="material-icons">add</i></a></li>
-                    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+                    <!-- <li><a class="btn-floating red"><i class="material-icons">add</i></a></li>
+                    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li> -->
                     <li><a class="btn-floating green" ng-click="copyLink()"><i class="material-icons">link</i></a></li>
                     <li><a class="btn-floating blue" data-target="modal1"><i class="material-icons">add</i></a></li>
                 </ul>
@@ -37,6 +37,7 @@
                         <span><i class="material-icons right click" ng-click="openLink($index)">link</i></span>
                         <span class="right"> {{picture.comments.length}}</span>
                         <span><i class="material-icons right click" data-target="{{picture.url}}">comment</i></span>
+                        <span ng-show ="private($index)" class="private">private</span>
                     </div>
 
                     <div class="card-content">
@@ -57,7 +58,7 @@
                                         <img class="modalimg" style="background-image:url({{picture.url}})">
                                     </div>
                                     <div class="col s6">
-                                      <p>{{picture.name}}</p>
+                                        <p>{{picture.name}}</p>
                                         <p>{{picture.description}}</p>
                                     </div>
                                 </div>
@@ -101,6 +102,10 @@
                 <div class="input-field">
                     <label for="description">description</label>
                     <input type="text" id="description" name="" value="" ng-model="newPic.description">
+                </div>
+                <div class="switch">
+                    <label for="private">private ?</label>
+                    <label>No<input id="private" type="checkbox" ng-model="newPic.private"><span class="lever"></span>Yes</label>
                 </div>
             </div>
             <div class="modal-footer">
