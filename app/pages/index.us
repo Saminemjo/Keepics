@@ -6,15 +6,16 @@
         <%= pkg.name %>
     </title>
     <link rel="stylesheet" type="text/css" href="<%= css %>" media="all" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
 </head>
 
 <body>
-
-<meta name="viewport" content="width=device-width, user-scalable=no">
-    <div ui-view='navbar'></div>
-    <div ui-view='content'></div>
-
-    <script type="text/javascript" src="<%= js %>"></script>
+    <div id="wrap">
+        <div ui-view='navbar'></div>
+        <div ui-view='content' id="main">
+        </div>
+        <script type="text/javascript" src="<%= js %>"></script>
+    </div>
     <footer>
         <div id='footer' ui-view='footer'></div>
     </footer>
