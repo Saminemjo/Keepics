@@ -30,6 +30,16 @@ module.exports = function(lineman) {
             }
         },
         loadNpmTasks: lineman.config.application.loadNpmTasks.concat('grunt-contrib-copy'),
+        copy: {
+            'dl-dev-copy': {
+                files: [{
+                    expand: true,
+                    cwd: 'generated/',
+                    src: ['**'],
+                    dest: 'generated/'
+                }]
+            }
+        },
         watch: {
             target: {
                 "files": ["app/**/*"],
