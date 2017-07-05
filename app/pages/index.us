@@ -12,13 +12,12 @@
 <body>
     <div id="wrap">
         <div ui-view='navbar'></div>
-        <div ui-view='content' id="main">
-        </div>
+        <div ui-view='content' id="main"></div>
         <script type="text/javascript" src="<%= js %>"></script>
     </div>
+  </body>
     <footer>
         <div id='footer' ui-view='footer'></div>
     </footer>
-</body>
 
 </html>
